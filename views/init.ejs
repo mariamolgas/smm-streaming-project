@@ -1,0 +1,167 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="js/streamut.js" type="text/javascript"></script>
+    <script>
+        window.jQuery || document.write('<script src="jquery.min.js"><\/script>')
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.12.0/d3.min.js"></script>    
+    <script src="js/streamut.js" type="text/javascript"></script>
+    <script src="js/bandwidth.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <link href="css/streamut.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  
+    <title> Streamut</title>
+   
+</head>
+
+<body onload="getBW();">
+
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+                <a class="navbar-brand" href="index">Streamut</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+        
+                <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/index">Inicio
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/ver_catalogo">Ver catálogo
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="http://www.google.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">Salas</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown01">
+                                <a class="dropdown-item" href="/nueva_sala">Crear sala</a>
+                                <a class="dropdown-item" href="/unirse_a_sala">Unirse a sala</a>
+                                <a class="dropdown-item" href="/eliminar_sala">Eliminar sala</a>
+        
+                            </div>
+                        </li>
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </div>
+            </nav>
+           
+                    
+            <% if(play_video==true){%>
+
+    <div class="text-center">
+                
+        <div class="row ">
+            <div class="col">
+                    <div class="text-center rectangle" id="rectangle">
+                            <label class="password"> 
+                                <div class="titulo">Modo seguro </div>
+                                User:<br/>
+                                Password: smmsmm
+                            </label>
+                    </div>
+
+                    <p><a class="btn btn-danger btn-lg btn-sm input-block-level" onclick="reload();" role="button">La peli se ha comenzado a reproducir, </br>pulsa si no se reproduce automáticamente &raquo;</a></p>              
+            </div>
+            <div class="col">
+                <div class="video-player">
+                    <video width="640" height="480" autoplay>
+                         <source type="video/ogg" src=http://<%=room.ip%>:<%=room.puerto_flujo%> >
+                     </video>
+                </div>
+            </div>
+            
+            <div class="col">
+                    <div class = "chat">
+                            <script id="cid0020000176096693325" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 250px;height: 350px;">{"handle":"streamut","arch":"js","styles":{"a":"CC0000","b":100,"c":"FFFFFF","d":"FFFFFF","k":"CC0000","l":"CC0000","m":"CC0000","n":"FFFFFF","p":"10","q":"CC0000","r":100,"surl":0,"fwtickm":1}}</script>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <%}else{%>
+
+        
+            <div class="text-center">
+                        
+                <div class="row ">
+                    <div class="col">
+                    </div>
+                    <div class="col">
+                        <div class="listo">
+                            <%if (wait==true){%>
+                                <label>Esperando por mis amigos los lentos...Faltan</label>
+                                <%= (room.viewersnumber-room.cont) %>
+                                <label>por unirse... paciencia.</label>
+                                
+                                <p><a class="btn btn-info btn-lg btn-sm" onclick="reload();" role="button">Actualizar &raquo;</a></p>
+                                
+                            <%}%>
+            
+                                <form action=/ready?id=<%=room.id%>&film=<%=room.film%>&name=<%=room.name%>&user=<%= room.user%>&viewersnumber=<%= room.viewersnumber%>&cont=<%=Number(room.cont) + 1%>&ready=true method="post">
+                                    
+                                <input type="hidden" id="bitrate" name="bitrate" value="">
+                                        <%if (boton!=false){%>                                      
+                                 <input class="btn btn-success btn-lg " type="submit"  value="Estoy listo para ver la peli!" >
+                                 <%}%>
+                                </form>   
+                        
+                        </div>
+                    </div>
+                    
+                    <div class="col">
+                            <div class = "chat">
+                                    <script id="cid0020000176096693325" data-cfasync="false" async src="//st.chatango.com/js/gz/emb.js" style="width: 250px;height: 350px;">{"handle":"streamut","arch":"js","styles":{"a":"CC0000","b":100,"c":"FFFFFF","d":"FFFFFF","k":"CC0000","l":"CC0000","m":"CC0000","n":"FFFFFF","p":"10","q":"CC0000","r":100,"surl":0,"fwtickm":1}}</script>
+                            </div>
+                    </div>
+                </div>
+            </div>
+            <%}%>
+        
+    
+    <div class="player text-center">
+            <% if(play_video==true){%>
+            <button type="button" id="button_fbw" class="btn" onclick="buttonRewindPress('<%=room.puerto_VLC%>','<%=room.ip%>')">
+              <i class="fa fa-fast-backward"></i>
+            </button>
+            
+            <button type="button" id="button_bw" class="btn" onclick="buttonBackPress('<%=room.puerto_VLC%>','<%=room.ip%>')">
+              <i class="fa fa-backward"></i>
+            </button>
+            <button type="button" id="button_play" class="btn" onclick="buttonPlayPress('<%=room.puerto_VLC%>','<%=room.ip%>')">
+              <i class="fa fa-play"></i>
+            </button>
+            
+            <button type="button" id="button_stop" class="btn" onclick="buttonStopPress('<%=room.puerto_VLC%>','<%=room.ip%>')">
+              <i class="fa fa-stop"></i>
+            </button>
+            
+            <button type="button" id="button_fw" class="btn" onclick="buttonForwardPress('<%=room.puerto_VLC%>','<%=room.ip%>')">
+              <i class="fa fa-forward"></i>
+            </button>
+            
+            <button type="button" id="button_ffw" class="btn" onclick="buttonFastforwardPress('<%=room.puerto_VLC%>','<%=room.ip%>')">
+              <i class="fa fa-fast-forward"></i>
+            </button>  
+            <%}%>
+            
+          </div>
+      
+       
+        
+  </body>
+
+</html>
