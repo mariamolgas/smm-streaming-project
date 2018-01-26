@@ -1,0 +1,112 @@
+<html>
+
+    <head>
+        <meta charset="utf-8">
+
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script>
+            window.jQuery || document.write('<script src="jquery.min.js"><\/script>')
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+        <link href="css/nueva_sala.css" rel="stylesheet">
+        <title> Streamut</title>
+
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="index">Streamut</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/index">Inicio
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/ver_catalogo">Ver catálogo
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="http://www.google.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">Salas</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown01">
+                            <a class="dropdown-item" href="/nueva_sala">Crear sala</a>
+                            <a class="dropdown-item" href="/unirse_a_sala">Unirse a sala</a>
+                            <a class="dropdown-item" href="/eliminar_sala">Eliminar sala</a>
+
+                        </div>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+
+
+        <div class="container ver_catalogo">
+            <h2>Catálogo de películas</h2>
+
+            <% for(i in items) { %>
+                <%  if(i==0){ %>
+                    <div class="row">
+                <% } %>
+                
+                 <div class="col-md-4">
+                <img src="<%=items[i]%>.jpg" class="img-responsive">
+
+                  <div class="foot"><%=items[i]%>
+                </div>
+            </div>  
+           
+          
+                <% }%>
+            </div>
+            <!--div class="row">
+                <div class="col-md-4">
+                    <img src="star_wars.jpg" class="img-responsive" alt="Star wars">
+                    <div class="foot">Star wars
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <img src="el_diario_de_noah.jpg" class="img-responsive" alt="El diario de Noah">
+                    <div class="foot">El diario de Noah
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <img src="shin_chan.jpg" class="img-responsive" alt="Shin Chan en México">
+                    <div class="foot">Shin Chan en México
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="asesinato_en_el_oriente_express.jpg" class="img-responsive" alt="Asesinato en el Oriente Express">
+                    <div class="foot">Asesinato en el Oriente Express
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <img src="titanic.jpg" class="img-responsive" alt="Titanic">
+                    <div class="foot">Titanic
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <img src="lalaland.jpg" class="img-responsive" alt="Lalaland">
+                    <div class="foot">Lalaland
+                    </div>
+                </div>
+            </div-->
+        </div>
+    </body>
+</html>

@@ -1,0 +1,154 @@
+<html>
+    
+    <head>
+        <meta charset="utf-8">
+        <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+        <script src="js/streamut.js" type="text/javascript"></script>
+        <script>
+            window.jQuery || document.write('<script src="jquery.min.js"><\/script>')
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.12.0/d3.min.js"></script>    
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+        <link href="css/nueva_sala.css" rel="stylesheet">
+        <title> Streamut</title>
+    
+    </head>
+    
+    <body>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="index">Streamut</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/index">Inicio
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/ver_catalogo">Ver catálogo
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="http://www.google.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">Salas</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown01">
+                            <a class="dropdown-item" href="/nueva_sala">Crear sala</a>
+                            <a class="dropdown-item" href="/unirse_a_sala">Unirse a sala</a>
+                            <a class="dropdown-item" href="/eliminar_sala">Eliminar sala</a>
+    
+                        </div>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    
+        <div class="container nueva_sala">
+            <form action="/init" method="post">
+                <fieldset>
+                    <legend class="text-center">Nueva sala
+                        <span class="req"></span>
+                    </legend>
+    
+                    <div class="form-group">
+                        <label for="phonenumber">
+                            <span class="req">* </span> Nombre de la sala: </label>
+                        <input required type="text" name="roomname" id="roomname" class="form-control" placeholder="granvia" />
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="firstname">
+                            <span class="req">* </span> Usuario: </label>
+                        <input class="form-control" type="text" name="user" id="user" required placeholder="mariamolgas" />
+                        <div id="errFirst"></div>
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="lastname">
+                            <span class="req">* </span> Número de espectadores: </label>
+                        <select required name="viewersnumber" id="viewesnumber">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                        </select>
+                    </div>
+                    <label for="firstname">
+                        <span class="req">* </span> Seleccione película de nuestro amplio catálogo: </label>
+                                
+                        <% for(i in items) { %>
+                            <%  if(i==0){ %>
+                                <div class="row">
+                            <% } %>
+                            
+                             <div class="col-md-4">
+                            <img src="<%=items[i]%>.jpg" class="img-responsive">
+            
+                              <div class="foot"><%=items[i]%>
+                                <input required type="radio" name="film" id=<%=items[i]%> value=<%=items[i]%>>
+                            </div>
+                        </div>  
+                       
+                      
+                            <% }%>
+                        </div>
+                    
+                        <!--div class="col-md-4">
+                            <img src="el_diario_de_noah.jpg" class="img-responsive" alt="El diario de Noah">
+                            <div class="foot">El diario de Noah
+                                <input type="radio" name="film" id="el_diario_de_noah" value="el_diario_de_noah">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <img src="shin_chan.jpg" class="img-responsive" alt="Shin Chan en México">
+                            <div class="foot">Shin Chan en México
+                                <input type="radio" name="film" id="shin_chan" value="shin_chan">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="asesinato_en_el_oriente_express.jpg" class="img-responsive" alt="Asesinato en el Oriente Express">
+                            <div class="foot">Asesinato en el Oriente Express
+                                <input type="radio" name="film" id="asesinato_en_el_oriente_express" value="asesinato_en_el_oriente_express">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <img src="titanic.jpg" class="img-responsive" alt="Titanic">
+                            <div class="foot">Titanic
+                                <input type="radio" name="film" id="titanic" value="titanic">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <img src="lalaland.jpg" class="img-responsive" alt="Lalaland">
+                            <div class="foot">Lalaland
+                                <input type="radio" name="film" id="lalaland" value="lalaland">
+                            </div>
+                        </div>
+                    </div-->
+    
+    
+                    <div class="form-group crear-boton">
+                        <input class="btn btn-success" type="submit" value="Crear">
+                    </div>
+    
+                </fieldset>
+            </form>
+    
+        </div>
+    
+    </body>
+    
+    </html>
