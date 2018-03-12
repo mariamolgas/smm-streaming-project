@@ -1,0 +1,51 @@
+
+body {
+    padding-top: 1.5rem;
+    background-color: #F9AEA8;
+}
+
+.jumbotron {
+    margin-top: 0%;
+    height: 17em;
+    background-color: #FFFFFF;
+}
+
+.controles {
+    background-color: #FFFFFF;
+}
+
+.player {
+    margin: 15px 0;
+}
+
+.video-player {
+    margin: 15% 0 0;
+}
+.chat {
+    margin: 15% 0;
+}
+
+.listo{
+    margin: 10% 0;
+    
+}
+.btn-danger{
+    margin: 20% 5%;
+}
+
+.password{
+    margin: 15% 0 0 0;
+    font-size: 12px;
+    height: 80px;
+    width:140px;
+    text-align: left;
+    background:white;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.titulo{
+    font-size: 15px;
+    text-align: center;
+    font-weight:bold;
+}

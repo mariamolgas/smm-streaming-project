@@ -1,0 +1,9 @@
+mkdir node-streamut
+cd node-streamut
+
+npm init
+npm install express --save
+npm install child_process --save
+npm install util --save
+npm install ip --save
+npm install body-parser --save
